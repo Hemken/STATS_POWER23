@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>STATS POWER Extension Command</title>
+
+<link rel="stylesheet" type="text/css" href="extsyntax.css" />
+
+</head>
+
+<body>
+<h1>STATS POWER Extension Command</h1>
+
+<p>This procedure calculates power and related statistics for a variety
+of tests.  The tests include t tests, proportion tests, anova, correlation,
+chi-squared, and linear models.  Each type of test takes a set of input
+parameters that vary according to the test.  The resulting power can be 
+computed or the reverse.  That is, the power can be specified and one of the other parameters
+omitted, and the procedure will calculate the required value of the input
+to achieve the specified power.  The power is 1 - type II error probability.</p>
+
+<p>Any one of the parameters, including the power, can be a set of values.  The resulting
+table shows the statistics for each of those values combined with the values
+of the other inputs.  If a set of values is used, a plot is also produced.
+</p>
+
+<div class="syntax">
+<p>STATS POWER<br/>
+TYPE<sup>&#42;</sup> = TTESTEQUALN or TTESTUNEQUALN or NORMALMEAN or PROPOREQUALN or PROPORUNEQUALN
+or PROPOR or ANOVA or CORRELATION or CHISQUARED or LINEAR<br/>
+TTYPE = TWOSAMPLE or ONESAMPLE or PAIRED<br/>
+POWER = <em>value list</em><br>
+NOBS = <em>value list</em><br>
+NOBS1 = <em>value list</em><br>
+NUMGROUPS = <em>value list</em><br>
+EFFECTSIZE = <em>value list</em><br>
+R = <em>value list</em><br>
+DF = <em>value list</em><br>
+U = <em>value list</em><br>
+V = <em>value list</em><br>
+SIG = <em>value list</em><br>
+ALTHYPOT = TWOSIDED<sup>&#42;&#42;</sup> or GREATERTHAN or LESSTHAN</br>
+</p>
+
+<p>/HELP</p>
+
+<p><sup>&#42;</sup> Required<br/>
+<sup>&#42;&#42;</sup> Default</p>
+</div>
+<p>STATS POWER /HELP.  prints this information and does nothing else.</p>
+
+<pre class="example"><code>
+STATS POWER TYPE=TTESTEQUALN SIG=.05 EFFECTSIZE=.8 
+NOBS=100 TTYPE=TWOSAMPLE 
+ALTHYPOT=TWOSIDED.
+</code></pre><br>
+This displays the power for a t test with two samples of 100
+observations each for an effect size of .8 at a .05 significance level.
+In this example, the power is computed, because that was not specified
+as an input.  If, for example, power was specified but effect size was not,
+the effect size for the other given inputs would be displayed.
+</p>
+<p>Any one parameter can be iterated.  Specify iteration as<br/>
+start value stop value increment<br/>
+For example,<br/>
+NOBS = 100 200 10<br/>
+would calculate results for sample sizes of 100, 110, ... 200.
+</p>
+<p>The <strong>TYPE</strong> values and their associated parameters are as follows.
+<ul>
+<li><strong>TTESTEQUALN</strong>: t test of means for equal size samples<br/>
+Parameters: POWER, EFFECTSIZE, SIG, NOBS</li>
+<li><strong>TTESTUNEQUALN</strong>: t test of means for unequal size samples<br/>
+Parameters: POWER, EFFECTSIZE, SIG, NOBS, NOBS1</li>
+<li><strong>NORMALMEAN</strong>: t test of the mean of a normal distribution against a specified values<br/>
+Parameters: POWER, EFFECTSIZE, SIG, NOBS</li>
+<li><strong>PROPOREQUALN</strong>: two proportions test for equal sample sizes<br/>
+Parameters: POWER, EFFECTSIZE, SIG, NOBS</li>
+<li><strong>PROPORUNEQUALN</strong>: two proportions test for unequal sample sizes<br/>
+Parameters: POWER, EFFECTSIZE, SIG, NOBS, NOBS1</li>
+<li><strong>PROPOR</strong>: test against a specified proportion<br/>
+Parameters: POWER, EFFECTSIZE, SIG, NOBS</li>
+<li><strong>ANOVA</strong>: balanced one-way analysis of variance test<br/>
+Parameters: POWER, EFFECTSIZE, SIG, NUMGROUPS, NOBS</li>
+<li><strong>CORRELATION</strong>: test of correlation against specified value<br/>
+Parameters: POWER, R, SIG, NOBS</li>
+<li><strong>CHISQUARED</strong>: chi-squared test<br/>
+Parameters: POWER, DF, SIG, NOBS</li>
+<li><strong>LINEAR</strong>: test for the general linear model<br/>
+Parameters: POWER, U, V, SIG, NOBS</li>
+</ul>
+</p>
+<p>The parameter definitions are as follows.
+<ul>
+<li><strong>POWER</strong>: 1 - Type II error probability</li>
+<li><strong>NOBS</strong>: number of observations in first or only sample.  For
+equal n tests or ANOVA, the number in each group</li>
+<li><strong>NOBS1</strong>: number of observations in second group for unequal n tests</li>
+<li><strong>NUMGROUPS</strong>: number of groups (anova)</li>
+<li><strong>EFFECTSIZE</strong>: effect size</li>
+<li><strong>R</strong>: correlation (correlation)</li>
+<li><strong>DF</strong>: degrees of freedom (chi-squared)</li>
+<li><strong>U</strong>: numerator degrees of freedom (linear)</li>
+<li><strong>V</strong>: denominator degrees of freedom (linear)</li>
+<li><strong>SIG</strong>: Significance level - Type I error probability</li>
+</ul>
+</p>
+<p>
+<strong>TTYPE</strong> is the test type for the t test with equal sizes.  It is
+required for TYPE=TTESTEQUALN.<br/>
+<strong>ALTHYPOT</strong> specifies the alternative hypothesis: two sided, greater than the null,
+or less than the null.
+</p>
+
+<h3>Cohen Effect Sizes</h3>
+The conventional Cohen effect sizes are as follows.
+
+<table>
+<tr>
+<th>Test</th>
+<th>Small</th>
+<th>Medium</th>
+<th>Large</th>
+</tr>
+<tr>
+<td>T test</td><td>.2</td><td>.5</td><td>.8</td>
+</tr>
+<tr>
+<td>Proportion test</td><td>.2</td><td>.5</td><td>.8</td>
+</tr>
+<tr>
+<td>Correlation</td><td>.1</td><td>.3</td><td>.5</td>
+</tr>
+<tr>
+<td>Anova</td><td>.1</td><td>.25</td><td>.4</td>
+</tr>
+<tr>
+<td>Chi Squared</td><td>.1</td><td>.3</td><td>.5</td>
+</tr>
+<tr>
+<td>Linear</td><td>.02</td><td>.15</td><td>.35</td>
+</tr>
+</table>
+<h3>Acknowledgements</h3>
+The computations for this procedure are carried out by the R pwr package by Stephane Champely and others
+and maintained by Helios De Rosario.
+</p>
+
+<h3>Requirements</h3>
+This command requires the R Essentials.
+<p>&copy; Copyright Jon Peck, 2016</p>
+
+</body>
+
+</html>
+

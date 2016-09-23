@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>Statistical Power Calculations</title>
+<STYLE TYPE="text/css"> 
+<!-- 
+
+H1 {font-weight:bold; color:#006699; font-family:Verdana, Arial, sans-serif;font-size:125%; }
+H2 {font-weight:bold; color:#006699; font-family:Verdana, Arial, sans-serif;font-size:110%; }
+TABLE {font-size:100%;font-family:Verdana, Arial, sans-serif;}
+
+/* paragraph tags */
+.step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+.menuselection {margin-left:10px}
+.bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+.codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;font-family:"courier new",monospace; }
+
+/* inline tags */
+.code {font-family: Courier,fixed pitch;}                           /*** used to tag pieces of code (syntax, Python, R, HTML, etc.)   ***/
+.screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+.name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+.runinhead {font-weight: bold} 
+.superscript {vertical-align:super; font-size:80%}
+.subscript {vertical-align:sub; font-size:80%}
+.symbol {font-family: Symbol}
+
+--> 
+</STYLE>
+</head>
+<body>
+<h1>Statistical Power Calculations</h1>
+<p>This procedure calculates power and related statistics for a variety
+of tests.  The tests include t tests, proportion tests, anova, correlation,
+chi-squared, and linear models.  Each type of test takes a set of input
+parameters that vary according to the test.  The resulting power can be 
+computed or the reverse.  That is, the power can be specified and one of the other parameters
+omitted, and the procedure will calculate the required value of the input
+to achieve the specified power.  The power is 1 - type II error probability.</p>
+
+<p>Any one of the parameters, including the power, can be a set of values.  The resulting
+table shows the statistics for each of those values combined with the values
+of the other inputs.  If a set of values is used, a plot is also produced.
+</p>
+
+
+<p><span class="runinhead">Test Type</span> Choose the statistical procedure.
+The fields that apply to that procedure will be enabled and the others disabled.</p>
+
+<p><span class="runinhead">Type of T Test</span> If the chosen procedure is T test equal n, select
+the type of the test.  This list only applies to that particular procedure.</p>
+
+<p>Fill in all but one of the enabled fields.  The procedure will calculate
+the value for the remaining field given the others.</p>
+
+<p class="bullet">&bull;The Sample Size field does not apply to the anova or linear types.
+Leave it empty in that case.</p>
+
+<p class="bullet">&bull;For the equal n procedures, the sample size is for each group.</p>
+
+<p>Any one parameter can be iterated.  Specify iteration in the parameter field as<br/>
+start value stop value increment<br/>
+For example, in the sample size field<br/>
+100 200 10<br/>
+would calculate results for sample sizes of 100, 110, ... 200.
+</p>
+<p><span class="runinhead">Alternative Hypothesis</span> In the Alternative Hypothesis dialog,
+you can choose the desired alternative.</p>
+
+<h2>A Functional Note</h2>
+This package requires at least Statistics version 24.  With version 24, it is necessary to install
+at least FixPack 1 in order for the dialog to operate properly.  However, the syntax will work
+with 24.0.0.0 as well as earlier versions of Statistics.<p>
+
+<h2>Acknowledgements</h2>
+<p>This procedure uses the R pwr package by Stephane Champely and others
+and maintained by Helios De Rosario.
+The specific package version is indicated in the procedure output.
+</p>
+
+<h2>Additional Features</h2>
+<p>To display the syntax help, run
+<p class="code">STATS POWER /HELP</p>
+<p>
+or press F1 on an instance of the command in the Syntax Editor
+(Statistics version 23 or later).
+</p>
+
+<h2>Requirements</h2>
+This command requires the R Essentials.
+</p>
+  <hr
+  <p style="font-family:Verdana, Arial, sans-serif;font-size:80%;">
+  © Copyright Jon Peck. 2016</p>
+</body>
+</html>
+

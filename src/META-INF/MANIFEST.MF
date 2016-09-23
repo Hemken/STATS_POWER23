@@ -1,0 +1,18 @@
+Name: STATS_POWER23
+Command-Specs: STATS_POWER.xml
+Code-Files: STATS_POWER.R
+Misc-Files: STATS_POWER.htm,extsyntax.css,markdown.html
+Summary: Calculate statistical power and related statistics
+Description: This procedure calculates power for a variety of procedur
+ es given inputs such as sample size and effect size or calculates the
+  required value for an input to achieve specified power.  IMPORTANT: 
+ this version is for Statistics 23 and earlier.  It does not include a
+  dialog box interface;  For V24 and later, use the STATS POWER extens
+ ion.  It has the same functionality but includes a dialog box.
+Author: JKP
+Version: 1.0.0
+Product-Version: 18
+Date: 9/15/2016
+Categories: statistics power
+Plugins: R
+R-Packages: pwr
