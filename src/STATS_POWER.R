@@ -465,7 +465,7 @@ helper = function(cmdname) {
     # find the html help file and display in the default browser
     # cmdname may have blanks that need to be converted to _ to match the file
     
-    fn = gsub(" ", "_", cmdname, fixed=TRUE)
+    fn = paste0(gsub(" ", "_", cmdname, fixed=TRUE), "23")
     thefile = Find(file.exists, file.path(.libPaths(), fn, "markdown.html"))
     if (is.null(thefile)) {
         print("Help file not found")
@@ -473,6 +473,6 @@ helper = function(cmdname) {
         browseURL(paste("file://", thefile, sep=""))
     }
 }
-if (exists("spsspkg.helper")) {
-assign("helper", spsspkg.helper)
-}
+#if (exists("spsspkg.helper")) {
+#assign("helper", spsspkg.helper)
+#}
